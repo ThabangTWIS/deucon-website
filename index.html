@@ -189,20 +189,28 @@
   .sector.has-img { min-height: 260px; background: var(--ink) var(--img) center/cover no-repeat; }
   .sector.has-img::before {
     content: ""; position: absolute; inset: 0; z-index: 0;
-    background: linear-gradient(180deg, rgba(11,22,34,.15) 0%, rgba(11,22,34,.35) 40%, rgba(11,22,34,.92) 100%);
+    background: linear-gradient(180deg, rgba(11,22,34,.1) 0%, rgba(11,22,34,.45) 30%, rgba(11,22,34,.85) 58%, rgba(11,22,34,.95) 100%);
     transition: opacity .3s ease;
   }
   .sector.has-img::after { display: none; }
   .sector > * { position: relative; z-index: 1; }
   .sector.has-img { transition: background-size .5s ease; }
   .sector.has-img:hover::before { opacity: .85; }
-  .sector.has-img .num {
-    align-self: flex-start; background: rgba(11,22,34,.7); padding: 2px 10px; border-radius: 999px;
-    border: 1px solid rgba(245,165,36,.4);
-  }
-  .sector.has-img p { color: rgba(255,255,255,.82); }
-  .sector .num { font-family: "Space Grotesk", sans-serif; color: var(--amber); font-size: 14px; margin-bottom: auto; }
+  .sector.has-img { min-height: 320px; }
+  .sector.has-img p { color: rgba(255,255,255,.88); }
+  .sector.has-img h3, .sector.has-img p { text-shadow: 0 1px 8px rgba(11,22,34,.6); }
   .sector h3 { color: var(--white); font-size: 20px; margin: 18px 0 6px; }
+  .sector .work-label {
+    display: block; margin-top: 14px; font-size: 11px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--amber);
+  }
+  .sector .tags { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .sector .tags li {
+    font-size: 12px; font-weight: 500; color: var(--white); line-height: 1.3;
+    padding: 5px 10px; border-radius: 999px;
+    background: rgba(11,22,34,.55); border: 1px solid rgba(245,165,36,.45);
+    backdrop-filter: blur(4px);
+  }
   .sector p { font-size: 14px; color: rgba(255,255,255,.65); }
 
   /* Process */
@@ -504,12 +512,38 @@
         <p>The same disciplined approach, adapted to the demands of each environment.</p>
       </div>
       <div class="sectors">
-        <div class="sector reveal has-img" style="--img:url('images/sectors/commercial.jpg')"><span class="num">01</span><h3>Commercial and retail</h3><p>Offices, shopping centres and mixed-use developments.</p></div>
-        <div class="sector reveal has-img" style="--img:url('images/sectors/residential.jpg')"><span class="num">02</span><h3>Residential developments</h3><p>Estates, apartments and township reticulation.</p></div>
-        <div class="sector reveal has-img" style="--img:url('images/sectors/industrial.jpg')"><span class="num">03</span><h3>Industrial and logistics</h3><p>Factories, warehouses and process plants.</p></div>
-        <div class="sector reveal has-img" style="--img:url('images/sectors/public.jpg')"><span class="num">04</span><h3>Public and institutional</h3><p>Schools, clinics and municipal facilities.</p></div>
-        <div class="sector reveal has-img" style="--img:url('images/sectors/energy.webp')"><span class="num">05</span><h3>Energy and utilities</h3><p>Solar farms, embedded generation and substations.</p></div>
-        <div class="sector reveal has-img" style="--img:url('images/sectors/agriculture.webp')"><span class="num">06</span><h3>Agriculture</h3><p>Pumping, irrigation and off-grid farm supply.</p></div>
+        <!-- Each card: photo, sector, short description and "Typical work" tags.
+             When Gavin supplies real projects he is happy to share, they can replace or sit alongside the tags. -->
+        <div class="sector reveal has-img" style="--img:url('images/sectors/commercial.jpg')">
+          <h3>Commercial and retail</h3><p>Offices, shopping centres and mixed-use developments.</p>
+          <span class="work-label">Typical work</span>
+          <ul class="tags"><li>Tenant installations</li><li>LED lighting retrofits</li><li>Backup power</li></ul>
+        </div>
+        <div class="sector reveal has-img" style="--img:url('images/sectors/residential.jpg')">
+          <h3>Residential developments</h3><p>Estates, apartments and township reticulation.</p>
+          <span class="work-label">Typical work</span>
+          <ul class="tags"><li>Estate reticulation</li><li>Bulk metering</li><li>Home solar and batteries</li></ul>
+        </div>
+        <div class="sector reveal has-img" style="--img:url('images/sectors/industrial.jpg')">
+          <h3>Industrial and logistics</h3><p>Factories, warehouses and process plants.</p>
+          <span class="work-label">Typical work</span>
+          <ul class="tags"><li>MV supply and substations</li><li>Motor control centres</li><li>Power factor correction</li></ul>
+        </div>
+        <div class="sector reveal has-img" style="--img:url('images/sectors/public.jpg')">
+          <h3>Public and institutional</h3><p>Schools, clinics and municipal facilities.</p>
+          <span class="work-label">Typical work</span>
+          <ul class="tags"><li>Essential power supplies</li><li>Standby generators</li><li>Compliance audits</li></ul>
+        </div>
+        <div class="sector reveal has-img" style="--img:url('images/sectors/energy.webp')">
+          <h3>Energy and utilities</h3><p>Solar farms, embedded generation and substations.</p>
+          <span class="work-label">Typical work</span>
+          <ul class="tags"><li>Solar PV design</li><li>Grid-connection applications</li><li>Substation design</li></ul>
+        </div>
+        <div class="sector reveal has-img" style="--img:url('images/sectors/agriculture.webp')">
+          <h3>Agriculture</h3><p>Pumping, irrigation and off-grid farm supply.</p>
+          <span class="work-label">Typical work</span>
+          <ul class="tags"><li>Pump and irrigation supplies</li><li>Off-grid solar</li><li>Farm reticulation</li></ul>
+        </div>
       </div>
     </div>
   </section>
