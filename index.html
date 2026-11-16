@@ -254,6 +254,24 @@
     border-radius: 0 12px 12px 0; font-family: "Space Grotesk", sans-serif; font-size: 20px; color: var(--ink);
   }
 
+  /* Insights teaser */
+  #insights { background: var(--white); }
+  .insights-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
+  .all-link { font-weight: 600; color: var(--amber-deep); text-decoration: none; }
+  .all-link:hover { text-decoration: underline; }
+  .insight-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .insight-card {
+    display: grid; grid-template-columns: 200px 1fr; background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .insight-card:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .insight-card img { width: 100%; height: 100%; object-fit: cover; min-height: 170px; }
+  .insight-card .body { padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+  .insight-card .cat { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--amber-deep); }
+  .insight-card h3 { font-size: 18px; }
+  .insight-card .read { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--amber-deep); }
+
   /* CTA / Contact */
   #contact { background: var(--ink); color: var(--white); }
   #contact .section-head h2 { color: var(--white); }
@@ -311,6 +329,7 @@
     .hero-inner, .about-grid, .contact-grid, .director { grid-template-columns: 1fr; }
     .hero-card { max-width: 520px; }
     .services, .sectors { grid-template-columns: 1fr 1fr; }
+    .insight-cards { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr 1fr; row-gap: 40px; }
     .step::before { display: none; }
     .strip-inner { grid-template-columns: 1fr 1fr; }
@@ -336,6 +355,8 @@
     .strip-item:first-child { border-top: 0; }
     form.quote { padding: 24px; }
     .stats { grid-template-columns: 1fr; }
+    .insight-card { grid-template-columns: 1fr; }
+    .insight-card img { aspect-ratio: 16/9; min-height: 0; }
   }
 </style>
 </head>
@@ -352,6 +373,7 @@
       <li><a href="#sectors">Sectors</a></li>
       <li><a href="#approach">Approach</a></li>
       <li><a href="#team">Leadership</a></li>
+      <li><a href="insights/">Insights</a></li>
     </ul>
     <a href="#contact" class="btn btn-primary">Request a proposal</a>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" id="menuBtn">
@@ -602,6 +624,37 @@
     </div>
   </section>
 
+  <!-- INSIGHTS -->
+  <section id="insights">
+    <div class="wrap">
+      <div class="insights-head reveal">
+        <div class="section-head" style="margin-bottom:0">
+          <span class="eyebrow">Insights</span>
+          <h2>Practical guidance, in plain language.</h2>
+        </div>
+        <a class="all-link" href="insights/">All insights &rarr;</a>
+      </div>
+      <div class="insight-cards">
+        <a class="insight-card reveal" href="insights/sseg-registration-ethekwini/">
+          <img src="images/blog/sseg-hero.webp" alt="" width="1280" height="720" loading="lazy">
+          <div class="body">
+            <span class="cat">Solar and backup power</span>
+            <h3>Registering rooftop solar with eThekwini: what homeowners and businesses need to know</h3>
+            <span class="read">Read article &rarr;</span>
+          </div>
+        </a>
+        <a class="insight-card reveal" href="insights/coc-vs-engineer-sign-off/">
+          <img src="images/blog/coc-engineer.webp" alt="" width="1280" height="720" loading="lazy">
+          <div class="body">
+            <span class="cat">Compliance</span>
+            <h3>Certificate of Compliance or engineer's sign-off: which do you actually need?</h3>
+            <span class="read">Read article &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="wrap">
@@ -673,6 +726,7 @@
     <nav>
       <a href="#services">Services</a>
       <a href="#team">Leadership</a>
+      <a href="insights/">Insights</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="social" data-social></div>

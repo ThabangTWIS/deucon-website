@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- README: same strict rules as the main site. No em dash characters anywhere.
+     To add a post: create a folder here with an index.html (copy an existing post), then add a card below. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insights | Deucon Electrical Engineering Consultants</title>
+<meta name="description" content="Practical electrical engineering guidance for property owners, developers and businesses in KwaZulu-Natal, from the team at Deucon.">
+<link rel="icon" href="../brand/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../brand/logo/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../brand/logo/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="insights.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav" id="nav">
+    <a href="../" class="logo" aria-label="Deucon home"><img src="../brand/logo/deucon-logo-on-dark.svg" alt="Deucon" width="150" height="38"></a>
+    <ul class="nav-links">
+      <li><a href="../#about">About</a></li>
+      <li><a href="../#services">Services</a></li>
+      <li><a href="../#sectors">Sectors</a></li>
+      <li><a href="../#team">Leadership</a></li>
+      <li><a href="./" aria-current="page">Insights</a></li>
+    </ul>
+    <a href="../#contact" class="btn btn-primary">Request a proposal</a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" id="menuBtn">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Insights</span>
+      <h1>Practical electrical guidance, in plain language.</h1>
+      <p>Straight answers to the questions property owners, developers and businesses in KwaZulu-Natal ask us most.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="posts">
+      <a class="post-card" href="sseg-registration-ethekwini/">
+        <img src="../images/blog/sseg-hero.webp" alt="" width="1280" height="720">
+        <div class="body">
+          <div class="meta"><span class="cat">Solar and backup power</span><span>16 November 2026</span><span>6 min read</span></div>
+          <h2>Registering rooftop solar with eThekwini: what homeowners and businesses need to know</h2>
+          <p>What counts as embedded generation, why approval matters even for "zero export" inverters, and the steps from design to sign-off.</p>
+          <span class="read">Read article &rarr;</span>
+        </div>
+      </a>
+      <a class="post-card" href="coc-vs-engineer-sign-off/">
+        <img src="../images/blog/coc-engineer.webp" alt="" width="1280" height="720">
+        <div class="body">
+          <div class="meta"><span class="cat">Compliance</span><span>16 November 2026</span><span>5 min read</span></div>
+          <h2>Certificate of Compliance or engineer's sign-off: which do you actually need?</h2>
+          <p>What a CoC covers, what it does not, and the projects where a professional electrical engineer should be involved from the start.</p>
+          <span class="read">Read article &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img class="foot-logo" src="../brand/logo/deucon-logo-on-dark.svg" alt="Deucon" width="118" height="30">
+      &copy; <span id="year">2026</span> Deucon (Pty) Ltd. Electrical Engineering Consultants.
+    </div>
+    <nav><a href="../#services">Services</a><a href="./">Insights</a><a href="../#contact">Contact</a></nav>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const nav = document.getElementById('nav'), btn = document.getElementById('menuBtn');
+  btn.addEventListener('click', () => btn.setAttribute('aria-expanded', nav.classList.toggle('open')));
+</script>
+</body>
+</html>
