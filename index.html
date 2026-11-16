@@ -297,7 +297,15 @@
   input:focus, select:focus, textarea:focus { outline: 2px solid var(--amber); border-color: transparent; background: var(--white); }
   textarea { min-height: 120px; resize: vertical; }
   form.quote .btn { justify-content: center; width: 100%; }
-  .form-note { font-size: 13px; color: var(--muted); text-align: center; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  label.consent { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 13px; color: var(--muted); }
+  label.consent input { width: 18px; height: 18px; margin-top: 1px; flex: none; accent-color: var(--amber-deep); }
+  label.consent a { color: var(--amber-deep); }
+  form.quote .btn:disabled { opacity: .7; cursor: default; transform: none; }
+  .form-status { font-size: 14px; margin: 0; text-align: center; min-height: 0; }
+  .form-status.ok { color: #1f7a3a; background: #e6f6ea; border-radius: 10px; padding: 12px; }
+  .form-status.err { color: #a12a2a; background: #fbe9e9; border-radius: 10px; padding: 12px; }
+  form.quote { position: relative; }
 
   .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
   .social a {
@@ -710,8 +718,13 @@
             </select>
           </label>
           <label>Project details<textarea name="message" placeholder="Location, size, timeline and anything else we should know"></textarea></label>
+          <!-- Spam trap: hidden from people, bots fill it in -->
+          <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="consent"><input type="checkbox" name="consent" required>
+            <span>I agree that Deucon may use these details to respond to my enquiry, as set out in the <a href="privacy/">privacy notice</a>.</span>
+          </label>
           <button class="btn btn-primary" type="submit">Send enquiry</button>
-          <p class="form-note">This opens your email app with the details filled in.</p>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -728,6 +741,7 @@
       <a href="#services">Services</a>
       <a href="#team">Leadership</a>
       <a href="insights/">Insights</a>
+      <a href="privacy/">Privacy</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="social" data-social></div>
@@ -747,7 +761,10 @@
     cell:     '082 301 5338',
     // Gavin's years of experience, shown in the hero, the strip and his profile.
     // His LinkedIn shows engineering roles from February 2005, which is over 20 years.
-    years:    '20+'
+    years:    '20+',
+    // Web app link from the Deucon Leads Google Sheet (Apps Script > Deploy > Web app).
+    // Leave empty to fall back to opening the visitor's email app.
+    leadsEndpoint: ''
   };
   document.querySelectorAll('[data-years]').forEach(el => { el.textContent = DEUCON.years; });
 
@@ -796,22 +813,48 @@
   }, { threshold: 0.12 }) : null;
   document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
 
-  // Enquiry form -> mailto
-  document.getElementById('quoteForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const f = new FormData(e.target);
-    const to = DEUCON.email;
+  // Enquiry form: sends to the Deucon Leads Google Sheet (DEUCON.leadsEndpoint).
+  // If no endpoint is set, or sending fails, it falls back to opening the visitor's email app.
+  const form = document.getElementById('quoteForm');
+  const statusEl = document.getElementById('formStatus');
+
+  function openMailFallback(f) {
     const subject = `Project enquiry: ${f.get('service')}`;
     const body = [
-      `Name: ${f.get('name')}`,
-      `Company: ${f.get('company')}`,
-      `Email: ${f.get('email')}`,
-      `Phone: ${f.get('phone')}`,
-      `Service: ${f.get('service')}`,
-      '',
-      f.get('message')
+      `Name: ${f.get('name')}`, `Company: ${f.get('company')}`, `Email: ${f.get('email')}`,
+      `Phone: ${f.get('phone')}`, `Service: ${f.get('service')}`, '', f.get('message')
     ].join('\n');
-    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${DEUCON.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = new FormData(form);
+    if (f.get('website')) return;               // spam trap
+    if (!DEUCON.leadsEndpoint) return openMailFallback(f);
+
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    statusEl.className = 'form-status'; statusEl.textContent = '';
+
+    const data = new URLSearchParams();
+    ['name', 'company', 'email', 'phone', 'service', 'message', 'website'].forEach(k => data.append(k, f.get(k) || ''));
+    data.append('page', location.href);
+
+    try {
+      // Apps Script does not return CORS headers, so the response can't be read; a network error is the only failure signal.
+      await fetch(DEUCON.leadsEndpoint, { method: 'POST', mode: 'no-cors', body: data });
+      form.reset();
+      statusEl.className = 'form-status ok';
+      statusEl.textContent = `Thank you. Your enquiry has been sent and we will be in touch within one working day.`;
+      btn.textContent = 'Sent';
+      setTimeout(() => { btn.disabled = false; btn.textContent = 'Send enquiry'; }, 6000);
+    } catch (err) {
+      statusEl.className = 'form-status err';
+      statusEl.textContent = 'Sorry, that did not send. Opening your email app instead.';
+      btn.disabled = false; btn.textContent = 'Send enquiry';
+      openMailFallback(f);
+    }
   });
 </script>
 </body>

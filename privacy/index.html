@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- README: same strict rules as the main site. No em dash characters anywhere.
+     DRAFT privacy notice for Gavin to review (and ideally have checked against POPIA) before real use. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Notice | Deucon</title>
+<meta name="description" content="How Deucon (Pty) Ltd collects and uses personal information submitted through this website, in line with the Protection of Personal Information Act (POPIA).">
+<link rel="icon" href="../brand/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../brand/logo/favicon.png" sizes="32x32" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../insights/insights.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav" id="nav">
+    <a href="../" class="logo" aria-label="Deucon home"><img src="../brand/logo/deucon-logo-on-dark.svg" alt="Deucon" width="150" height="38"></a>
+    <ul class="nav-links">
+      <li><a href="../#about">About</a></li>
+      <li><a href="../#services">Services</a></li>
+      <li><a href="../#sectors">Sectors</a></li>
+      <li><a href="../#team">Leadership</a></li>
+      <li><a href="../insights/">Insights</a></li>
+    </ul>
+    <a href="../#contact" class="btn btn-primary">Request a proposal</a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" id="menuBtn">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Privacy</span>
+      <h1>Privacy notice</h1>
+      <p>How we handle the personal information you share with us through this website.</p>
+    </div>
+  </section>
+
+  <article class="post">
+    <div class="content">
+      <p><strong>Deucon (Pty) Ltd</strong> ("Deucon", "we") is an electrical engineering consultancy based in Durban, KwaZulu-Natal. We respect your privacy and handle personal information in line with the Protection of Personal Information Act, 2013 (POPIA).</p>
+
+      <h2>What we collect</h2>
+      <p>When you send an enquiry through our website, we collect the details you choose to give us: your name, company, email address, phone number, the service you are interested in, and any project details you include.</p>
+
+      <h2>Why we use it</h2>
+      <ul>
+        <li>To respond to your enquiry and discuss your project</li>
+        <li>To prepare a proposal or quotation if you ask for one</li>
+        <li>To keep a record of our communication with you</li>
+      </ul>
+      <p>We do not sell your information, and we do not add you to marketing lists without your separate consent.</p>
+
+      <h2>Where it is stored</h2>
+      <p>Enquiries are stored in our business email and in a secure spreadsheet using Google Workspace services. These services may store information on servers outside South Africa, which offer protection comparable to POPIA. Only Deucon staff who need it to respond to you can access it.</p>
+
+      <h2>How long we keep it</h2>
+      <p>We keep enquiry details only for as long as we need them to deal with your enquiry, and for any project that follows, or as required by law. Enquiries that do not lead to work are deleted when they are no longer needed.</p>
+
+      <h2>Your rights</h2>
+      <p>You may ask us to tell you what information we hold about you, to correct it, or to delete it. You may also object to us using it. To do so, contact us using the details below. If you are not satisfied with our response, you may complain to the Information Regulator of South Africa at <a href="https://inforegulator.org.za/" target="_blank" rel="noopener">inforegulator.org.za</a>.</p>
+
+      <h2>Contact</h2>
+      <p>Email: <a data-link="email" href="mailto:gavin@deucon.co.za">gavin@deucon.co.za</a></p>
+
+      <p class="disclaimer">Last updated: 16 November 2026.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img class="foot-logo" src="../brand/logo/deucon-logo-on-dark.svg" alt="Deucon" width="118" height="30">
+      &copy; <span id="year">2026</span> Deucon (Pty) Ltd. Electrical Engineering Consultants.
+    </div>
+    <nav><a href="../#services">Services</a><a href="../insights/">Insights</a><a href="./">Privacy</a><a href="../#contact">Contact</a></nav>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const nav = document.getElementById('nav'), btn = document.getElementById('menuBtn');
+  btn.addEventListener('click', () => btn.setAttribute('aria-expanded', nav.classList.toggle('open')));
+</script>
+</body>
+</html>
